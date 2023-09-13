@@ -14,60 +14,60 @@
 // // Call checkServerVPNStatus every 5 seconds
 // setInterval(checkServerVPNStatus, 5000);
     function loadIframe() {
-        const originPath = window.location.origin;
-        console.log('originPath',originPath)
-        const company = originPath === "https://mpluse" || originPath === "https://uat-mpluse" || originPath === "https://s4-dev-mpulse.mfec.dev" ? "mfec": "msyne" 
-        console.log('company---',company)
-        var srcPage = {
-            "get-token": "https://appsmith-canary.mfec.dev/app/mpulse-release-1/landinggettoken-64f56e6f168a6239ab39fe7a?branch=release_phase2&embed=true",
-            "logout": "https://appsmith-canary.mfec.dev/app/mpulse-release-1/login-ad-64f56e6f168a6239ab39fe92?branch=release_phase2&embed=true"
-        }
-        var getUrlParam = function getUrlParameter(sParam) {
-            var sPageURL = window.location.search.substring(1),
-            url = window.location.origin,
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
-            for(i = 0; i < sURLVariables.length; i++){
-                sParameterName = sURLVariables[i].split('=');
-                if(sParameterName[0] === sParam) {
-                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-                }
-            }
-        }
-        function changeUrl() {
-            var originUrl = window.location.origin;
-            history.pushState(null, "", originUrl);  //www.appsmith?page=get-token&code=1234
-        } 
-        function getRemainParameter() {
-          var pageURL = window.location.search.substring(1);
-          var urlVariables = pageURL.split("&");
-          return urlVariables.slice(1).join("&") || "";
-        }
-        var iframe = document.getElementById("mpulseIframe");
-        var pageParam = getUrlParam("page");//Back-end send query name page = 
-        var remainParam = getRemainParameter();
-        var srcPageIframe = srcPage[pageParam];
-        if(getRemainParameter() !== "") {
-            srcPageIframe =  srcPageIframe + "&" + getRemainParameter();
-        }
-        iframe.src = srcPageIframe || `https://appsmith-canary.mfec.dev/app/mpulse-release-1/landingrefreshpage-64f56e6f168a6239ab39fe86?branch=release_phase2&embed=true&company=${company}`
+        // const originPath = window.location.origin;
+        // console.log('originPath',originPath)
+        // const company = originPath === "https://mpluse" || originPath === "https://uat-mpluse" || originPath === "https://s4-dev-mpulse.mfec.dev" ? "mfec": "msyne" 
+        // console.log('company---',company)
+        // var srcPage = {
+        //     "get-token": "https://appsmith-canary.mfec.dev/app/mpulse-release-1/landinggettoken-64f56e6f168a6239ab39fe7a?branch=release_phase2&embed=true",
+        //     "logout": "https://appsmith-canary.mfec.dev/app/mpulse-release-1/login-ad-64f56e6f168a6239ab39fe92?branch=release_phase2&embed=true"
+        // }
+        // var getUrlParam = function getUrlParameter(sParam) {
+        //     var sPageURL = window.location.search.substring(1),
+        //     url = window.location.origin,
+        //     sURLVariables = sPageURL.split('&'),
+        //     sParameterName,
+        //     i;
+        //     for(i = 0; i < sURLVariables.length; i++){
+        //         sParameterName = sURLVariables[i].split('=');
+        //         if(sParameterName[0] === sParam) {
+        //             return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        //         }
+        //     }
+        // }
+        // function changeUrl() {
+        //     var originUrl = window.location.origin;
+        //     history.pushState(null, "", originUrl);  //www.appsmith?page=get-token&code=1234
+        // } 
+        // function getRemainParameter() {
+        //   var pageURL = window.location.search.substring(1);
+        //   var urlVariables = pageURL.split("&");
+        //   return urlVariables.slice(1).join("&") || "";
+        // }
+        // var iframe = document.getElementById("mpulseIframe");
+        // var pageParam = getUrlParam("page");//Back-end send query name page = 
+        // var remainParam = getRemainParameter();
+        // var srcPageIframe = srcPage[pageParam];
+        // if(getRemainParameter() !== "") {
+        //     srcPageIframe =  srcPageIframe + "&" + getRemainParameter();
+        // }
+        iframe.src = 'https://appsmith-canary.mfec.dev/app/mpluse-testing-feedback/au2-sup-selfevadepartpage-650150f0cbc33c5d051a9e34'
         changeUrl()
     };
-  let isNavigatedLogin =false;
-  let isNavigatedLogout = false
-  // Add an event listener to listen for messages from the Appsmith app
-  window.addEventListener("message", function(event) {
-  if (event.data.urlName === "login" &&  isNavigatedLogin === false) {
-    console.log('log in AD authen')
-    isNavigatedLogin = true
-    window.location.href = event.data.url
-  }else if(event.data.urlName === "logout" &&  isNavigatedLogout === false){
-    console.log('log out AD authen')
-    isNavigatedLogout = true; 
-    window.location.href = event.data.url
-  }
-  });
+  // let isNavigatedLogin =false;
+  // let isNavigatedLogout = false
+  // // Add an event listener to listen for messages from the Appsmith app
+  // window.addEventListener("message", function(event) {
+  // if (event.data.urlName === "login" &&  isNavigatedLogin === false) {
+  //   console.log('log in AD authen')
+  //   isNavigatedLogin = true
+  //   window.location.href = event.data.url
+  // }else if(event.data.urlName === "logout" &&  isNavigatedLogout === false){
+  //   console.log('log out AD authen')
+  //   isNavigatedLogout = true; 
+  //   window.location.href = event.data.url
+  // }
+  // });
    window.onload = loadIframe;
 
    //MAZE
